@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import testJSON from './assets/test.json'
+import Finish from './components/Finish'
+import Test from './components/Test'
+import { answer } from './interfaces'
 
-function App() {
+const App: React.FC = () => {
+  const [results, setResults] = useState<answer[]>([])
+  const [page, setPage] = useState<number>(0)
+
+  // createResult
+  const createResult = (answer: answer) => {
+    setResults(prev => [...prev, answer])
+    setPage(page + 1)
+  }
+
+  // resetResults
+  const resetResults = () => {
+    setResults([])
+    setPage(0)
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="row">
+        <div className="grid8">
+          <div className="App">
+
+            {testJSON.map(el => (
+              <Test key={el.id} test={el} func={createResult} page={page + 1} length={testJSON.length} />
+            ))[page]}
+
+            {(page > testJSON.length - 1) && <Finish info={results} func={resetResults} />}
+            
+          </div>
+        </div>
+        <div className="grid4">
+          <pre>{JSON.stringify(results, null, 2)}</pre>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
