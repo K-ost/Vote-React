@@ -23,11 +23,16 @@ const Finish: React.FC<IFinish> = ({ info, func }) => {
         {info.map(el => (
           <li key={el.id} className={el.isRight ? 'success' : 'danger'}>
             <h4>{el.question}</h4>
-            {el.value.length !== 0
-              ? <p>Ваш ответ: <b>{el.value}</b></p>
-              : <p>Вы не успели ответить</p>
-            }
-            {!el.isRight && <p>Правильный ответ: <b>{el.answer}</b></p>}
+            <div className="results-body">
+              <div className="results-details">
+                {el.value.length !== 0
+                  ? <p>Ваш ответ: <b>{el.value}</b></p>
+                  : <p>Вы не успели ответить</p>
+                }
+                {!el.isRight && <p>Правильный ответ: <b>{el.answer}</b></p>}
+              </div>
+              {el.image && <div className="results-img" style={{backgroundImage: `url(${el.image})`}}></div>}
+            </div>
           </li>
         ))}
       </ul>

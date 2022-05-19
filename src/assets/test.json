@@ -61,5 +61,14 @@
     "answer": "Манго",
     "image": "https://img2.zakaz.ua/2.1603438136.ad72436478c_2020-10-23_Auchan_Alexey/2.1603438136.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg",
     "time": 7000
+  },
+  {
+    "id": "08",
+    "question": "Сколько будет 7 x 8?",
+    "type": "input",
+    "options": [],
+    "answer": "56",
+    "image": null,
+    "time": null
   }
 ]

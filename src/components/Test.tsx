@@ -30,6 +30,13 @@ const Test: React.FC<ITest> = ({ test, func, page, length }) => {
   }
 
 
+  // handlerInput
+  const handlerInput = (value: string) => {
+    setDisabled(false)
+    setValue(value)
+  }
+
+
   // nextStep
   const nextStep = useCallback(() => {
     const answer: answer = {
@@ -37,11 +44,12 @@ const Test: React.FC<ITest> = ({ test, func, page, length }) => {
       question: test.question,
       value: (test.type === 'checkbox') ? values.sort().join(', ') : value,
       isRight: (test.type === 'checkbox') ? values.sort().join(', ') === test.answer : value === test.answer,
-      answer: test.answer
+      answer: test.answer,
+      image: test.image!
     }
     func(answer)
     setDisabled(true)
-  }, [func, value, values, test.answer, test.type, test.question])
+  }, [func, value, values, test.answer, test.type, test.question, test.image])
 
 
   // Timer
@@ -71,6 +79,7 @@ const Test: React.FC<ITest> = ({ test, func, page, length }) => {
 
       {test.type === 'checkbox' && <p>Здесь можно выбрать несколько вариантов ответов.</p>}
 
+      {test.type !== 'input' && 
       <ul className="test-questions">
         {test.options.map((el, index) => (
           <li key={index}>
@@ -80,7 +89,16 @@ const Test: React.FC<ITest> = ({ test, func, page, length }) => {
             </label>
           </li>
         ))}
-      </ul>
+      </ul>}
+
+      {test.type === 'input' && <div className="form-input">
+        <input
+          type="text"
+          className="input"
+          placeholder="Ваш ответ"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlerInput(e.target.value)}
+        />
+      </div>}
 
       <button className="btn" onClick={nextStep} disabled={disabled}>
         {(page !== length)

@@ -14,4 +14,5 @@ export interface answer {
   value: string
   isRight: boolean
   answer: string
+  image?: string
 }

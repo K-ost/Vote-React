@@ -39,12 +39,6 @@ img {
 .grid8 {flex: 0 0 66.666666%; max-width: 66.666666%;}
 
 
-/* error-text */
-.error-text {
-  color: #ff0000;
-  margin: 10px 0;
-}
-
 
 
 .App {
@@ -67,6 +61,24 @@ h2 {
 }
 
 p .emoji {margin-right: 10px;}
+
+
+/* input */
+.input {
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-appearance: none;
+  outline: none;
+  margin: 0;
+  height: 44px;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 8px 14px;
+}
+.form-input {
+  margin: 0 0 24px;
+  .input {width: 100%;}
+}
 
 
 /* btn */
@@ -149,6 +161,12 @@ p .emoji {margin-right: 10px;}
       margin: 0 0 4px; color: #353535;
       b {color: #000;}
     }
+  }
+  &-body {display: flex; align-items: center; justify-content: space-between;}
+  &-img {
+    max-width: 60px; min-width: 60px; height: 60px; overflow: hidden;
+    border-radius: 4px;
+    background-position: center; background-size: cover; background-repeat: no-repeat;
   }
 }
 
