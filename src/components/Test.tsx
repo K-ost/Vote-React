@@ -68,44 +68,47 @@ const Test: React.FC<ITest> = ({ test, func, page, length }) => {
 
 
   return (
-    <div className="testbox">
-      <h2>{test.question}</h2>
+    <>
+      <div className="App-header">Вопрос <b>{page}</b> из {length}</div>
+      <div className="testbox">
+        <h2>{test.question}</h2>
 
-      {test.time && (
-        <div className="timebox">Данный вопрос на время. У вас осталось: <span><b>{time}</b> сек.</span></div>
-      )}
+        {test.time && (
+          <div className="timebox">Данный вопрос на время. У вас осталось: <span><b>{time}</b> сек.</span></div>
+        )}
 
-      {test.image && <p><img src={test.image} alt="" /></p>}
+        {test.image && <p><img src={test.image} alt="" /></p>}
 
-      {test.type === 'checkbox' && <p>Здесь можно выбрать несколько вариантов ответов.</p>}
+        {test.type === 'checkbox' && <p>Здесь можно выбрать несколько вариантов ответов.</p>}
 
-      {test.type !== 'input' && 
-      <ul className="test-questions">
-        {test.options.map((el, index) => (
-          <li key={index}>
-            <label className="check-field">
-              <input type={test.type} className={test.type} name={test.id} onChange={() => handler(el)} />
-              <span>{el}</span>
-            </label>
-          </li>
-        ))}
-      </ul>}
+        {test.type !== 'input' && 
+        <ul className="test-questions">
+          {test.options.map((el, index) => (
+            <li key={index}>
+              <label className="check-field">
+                <input type={test.type} className={test.type} name={test.id} onChange={() => handler(el)} />
+                <span>{el}</span>
+              </label>
+            </li>
+          ))}
+        </ul>}
 
-      {test.type === 'input' && <div className="form-input">
-        <input
-          type="text"
-          className="input"
-          placeholder="Ваш ответ"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlerInput(e.target.value)}
-        />
-      </div>}
+        {test.type === 'input' && <div className="form-input">
+          <input
+            type="text"
+            className="input"
+            placeholder="Ваш ответ"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlerInput(e.target.value)}
+          />
+        </div>}
 
-      <button className="btn" onClick={nextStep} disabled={disabled}>
-        {(page !== length)
-        ? 'Перейти к следующему вопросу'
-        : 'Завершить тест'}
-      </button>
-    </div>
+        <button className="btn" onClick={nextStep} disabled={disabled}>
+          {(page !== length)
+          ? 'Перейти к следующему вопросу'
+          : 'Завершить тест'}
+        </button>
+      </div>
+    </>
   )
 }
 

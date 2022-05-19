@@ -22,16 +22,15 @@ const App: React.FC = () => {
   
   return (
     <div className="container">
+      <p>React</p>
       <div className="row">
         <div className="grid8">
           <div className="App">
-
             {testJSON.map(el => (
               <Test key={el.id} test={el} func={createResult} page={page + 1} length={testJSON.length} />
             ))[page]}
 
             {(page > testJSON.length - 1) && <Finish info={results} func={resetResults} />}
-            
           </div>
         </div>
         <div className="grid4">
